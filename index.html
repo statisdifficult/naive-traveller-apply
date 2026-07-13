@@ -15,21 +15,26 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
 <style>
   :root {
-    --bg: #faf7f2;
-    --card: #ffffff;
-    --ink: #2b2723;
-    --sub: #8a8178;
-    --accent: #d97742;
+    --bg: #ffe9a8;
+    --card: #fffdf6;
+    --ink: #1a1614;
+    --sub: #6f6250;
+    --accent: #ff5a36;
+    --blue: #2b6cff;
     --accent-soft: #fbeade;
-    --line: #ece5db;
+    --line: #1a1614;
+    --shadow: 5px 5px 0 #1a1614;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     background:
-      radial-gradient(1200px 500px at 50% -100px, #fdf4ea 0%, rgba(253,244,234,0) 70%),
+      radial-gradient(1200px 500px at 50% -100px, #fff3c9 0%, rgba(255,243,201,0) 70%),
       var(--bg);
     color: var(--ink);
     line-height: 1.7;
@@ -41,13 +46,23 @@
   header { text-align: center; padding: 64px 0 40px; }
   .eyebrow {
     display: inline-block;
-    font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
-    color: var(--sub);
-    background: var(--line);
+    font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
+    color: #fff;
+    background: var(--blue);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
     padding: 6px 14px; border-radius: 999px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    transform: rotate(-2deg);
   }
-  h1 { font-size: clamp(27px, 6vw, 38px); font-weight: 800; letter-spacing: -0.03em; }
+  h1 {
+    font-family: "Black Han Sans", "Pretendard", sans-serif;
+    font-size: clamp(30px, 7.5vw, 46px);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.3;
+    text-shadow: 3px 3px 0 rgba(255, 90, 54, .35);
+  }
   .tagline { margin-top: 12px; color: var(--sub); font-size: 15px; }
   .hr-plane {
     display: flex; align-items: center; justify-content: center; gap: 12px;
@@ -58,7 +73,8 @@
   .hr-plane::before, .hr-plane::after {
     content: "";
     width: 52px; height: 0;
-    border-top: 2px dashed #e3cfb8;
+    border-top: 2px dashed var(--ink);
+    opacity: .5;
   }
   .deco {
     position: fixed; inset: 0;
@@ -75,7 +91,7 @@
   .wrap { position: relative; z-index: 1; }
 
   .carousel { position: relative; margin: 8px 0 40px; }
-  .carousel .track { box-shadow: 0 18px 40px -22px rgba(80, 60, 40, .45); }
+  .carousel .track { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
   .track {
     display: flex;
     overflow-x: auto;
@@ -130,29 +146,37 @@
   .nav.next { right: 12px; }
   .dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
   .dots button {
-    width: 8px; height: 8px; border-radius: 50%;
+    width: 9px; height: 9px; border-radius: 50%;
     border: none; padding: 0; cursor: pointer;
-    background: var(--line);
+    background: rgba(26,22,20,.25);
     transition: background .25s ease, transform .25s ease;
   }
   .dots button.on { background: var(--accent); transform: scale(1.3); }
   @media (hover: none) { .nav { display: none; } }
 
-  section { margin-bottom: 36px; }
+  section { margin-bottom: 40px; }
   h2 {
-    font-size: 14px; font-weight: 700; letter-spacing: 0.12em;
-    color: var(--sub); text-transform: uppercase;
-    margin-bottom: 14px;
+    display: inline-block;
+    font-size: 14px; font-weight: 800; letter-spacing: 0.12em;
+    color: var(--ink); text-transform: uppercase;
+    background: var(--card);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    border-radius: 8px;
+    padding: 4px 12px;
+    margin-bottom: 16px;
+    transform: rotate(-1.5deg);
   }
+  section:nth-of-type(odd) h2 { transform: rotate(1.5deg); background: #ffd28f; }
   .card {
     background: var(--card);
-    border: 1px solid var(--line);
+    border: 2px solid var(--ink);
     border-radius: 18px;
     padding: 26px 28px;
-    box-shadow: 0 10px 30px -24px rgba(80, 60, 40, .5);
+    box-shadow: var(--shadow);
   }
   dl { display: grid; grid-template-columns: 110px 1fr; }
-  dt, dd { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  dt, dd { padding: 11px 0; border-bottom: 1px dashed rgba(26,22,20,.25); }
   dt:first-of-type, dd:first-of-type { padding-top: 0; }
   dt:last-of-type, dd:last-of-type { padding-bottom: 0; border-bottom: none; }
   dt { color: var(--sub); font-size: 14px; font-weight: 600; padding-top: 12px; }
@@ -164,7 +188,7 @@
 
   footer {
     text-align: center;
-    border-top: 1px solid var(--line);
+    border-top: 2px dashed rgba(26,22,20,.4);
     padding-top: 32px; margin-top: 12px;
   }
   .insta {
@@ -172,11 +196,12 @@
     font-size: 16px; font-weight: 700; color: var(--ink);
     text-decoration: none;
     background: var(--card);
-    border: 1px solid var(--line);
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
     padding: 12px 22px; border-radius: 999px;
-    transition: border-color .2s ease, transform .2s ease;
+    transition: transform .15s ease, box-shadow .15s ease;
   }
-  .insta:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .insta:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
   .insta svg { width: 20px; height: 20px; }
   .thanks { margin-top: 18px; color: var(--sub); font-size: 14px; }
 
@@ -198,34 +223,34 @@
 <div class="deco" aria-hidden="true">
   <svg class="path1" viewBox="0 0 480 220" fill="none">
     <path d="M-10 190 C 120 160, 200 60, 330 70 S 470 40, 500 20"
-          stroke="#e3cfb8" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+          stroke="#c98a2e" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
     <g transform="translate(330 70) rotate(-12)">
       <path d="M0 0 L-13 5 L-9 0 L-13 -5 Z M-9 0 L-22 2 L-20 0 L-22 -2 Z"
-            fill="#dcae87" transform="scale(1.25)"/>
+            fill="#ff5a36" transform="scale(1.25)"/>
     </g>
   </svg>
   <svg class="path2" viewBox="0 0 420 200" fill="none">
     <path d="M-10 30 C 100 60, 190 150, 300 130 S 420 160, 440 180"
-          stroke="#e8d8c4" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+          stroke="#c98a2e" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
     <g transform="translate(300 130) rotate(8)">
       <path d="M0 0 L-13 5 L-9 0 L-13 -5 Z M-9 0 L-22 2 L-20 0 L-22 -2 Z"
-            fill="#dcae87" transform="scale(1.1)"/>
+            fill="#ff5a36" transform="scale(1.1)"/>
     </g>
   </svg>
-  <svg class="globe" viewBox="0 0 200 200" fill="none" stroke="#e3cfb8" stroke-width="2">
+  <svg class="globe" viewBox="0 0 200 200" fill="none" stroke="#c98a2e" stroke-width="2">
     <circle cx="100" cy="100" r="72"/>
     <ellipse cx="100" cy="100" rx="30" ry="72"/>
     <path d="M32 76 h136 M28 100 h144 M32 124 h136"/>
     <path d="M100 178 v14 M78 196 h44" stroke-linecap="round"/>
-    <circle cx="128" cy="66" r="4" fill="#dcae87" stroke="none"/>
+    <circle cx="128" cy="66" r="4" fill="#ff5a36" stroke="none"/>
   </svg>
-  <svg class="map" viewBox="0 0 240 180" fill="none" stroke="#e3cfb8" stroke-width="2">
+  <svg class="map" viewBox="0 0 240 180" fill="none" stroke="#c98a2e" stroke-width="2">
     <path d="M20 40 L86 22 L154 40 L220 22 V140 L154 158 L86 140 L20 158 Z" stroke-linejoin="round"/>
     <path d="M86 22 V140 M154 40 V158"/>
     <path d="M48 116 C 76 84, 120 118, 148 74 S 196 56, 198 52"
-          stroke="#dcae87" stroke-dasharray="2 8" stroke-linecap="round"/>
-    <circle cx="48" cy="116" r="5" fill="#dcae87" stroke="none"/>
-    <path d="M198 38 c-8 0 -12 6 -12 11 c0 8 12 17 12 17 c0 0 12 -9 12 -17 c0 -5 -4 -11 -12 -11 Z" fill="#dcae87" stroke="none"/>
+          stroke="#ff5a36" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <circle cx="48" cy="116" r="5" fill="#ff5a36" stroke="none"/>
+    <path d="M198 38 c-8 0 -12 6 -12 11 c0 8 12 17 12 17 c0 0 12 -9 12 -17 c0 -5 -4 -11 -12 -11 Z" fill="#ff5a36" stroke="none"/>
   </svg>
   
 </div>
@@ -279,14 +304,14 @@
       @staytrueto_jihun
     </a>
     <p class="thanks">읽어주셔서 감사합니다. 인스타그램 DM으로도 편하게 연락 주세요!</p>
-    <svg class="sea" viewBox="0 0 800 130" fill="none" stroke="#e3cfb8" stroke-width="2" preserveAspectRatio="xMidYMax slice">
+    <svg class="sea" viewBox="0 0 800 130" fill="none" stroke="#2b6cff" stroke-width="2" preserveAspectRatio="xMidYMax slice">
     <path d="M-10 96 q20 -12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" stroke-linecap="round"/>
     <path d="M-30 116 q20 -12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" opacity=".6" stroke-linecap="round"/>
-    <g stroke="#dcae87" stroke-linecap="round">
+    <g stroke="#ff5a36" stroke-linecap="round">
       <path d="M96 92 L104 32 M76 40 a30 30 0 0 1 56 -6 M76 40 q14 -14 28 -7 q13 -14 28 1"/>
       <path d="M104 32 l6 -6"/>
     </g>
-    <g stroke="#dcae87" stroke-width="2.2" stroke-linecap="round">
+    <g stroke="#ff5a36" stroke-width="2.2" stroke-linecap="round">
       <path d="M600 38 q7 -8 14 0 q7 -8 14 0"/>
       <path d="M650 22 q6 -7 12 0 q6 -7 12 0"/>
       <path d="M688 44 q5 -6 10 0 q5 -6 10 0"/>
