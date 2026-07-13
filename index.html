@@ -28,9 +28,12 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    background: var(--bg);
+    background:
+      radial-gradient(1200px 500px at 50% -100px, #fdf4ea 0%, rgba(253,244,234,0) 70%),
+      var(--bg);
     color: var(--ink);
     line-height: 1.7;
+    word-break: keep-all;
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 64px; }
@@ -44,10 +47,20 @@
     padding: 6px 14px; border-radius: 999px;
     margin-bottom: 18px;
   }
-  h1 { font-size: clamp(26px, 6vw, 36px); font-weight: 800; letter-spacing: -0.02em; }
-  .tagline { margin-top: 10px; color: var(--sub); font-size: 15px; }
+  h1 { font-size: clamp(27px, 6vw, 38px); font-weight: 800; letter-spacing: -0.03em; }
+  .tagline { margin-top: 12px; color: var(--sub); font-size: 15px; }
+  .tagline::after {
+    content: "";
+    display: block;
+    width: 36px; height: 3px;
+    margin: 22px auto 0;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: .55;
+  }
 
-  .carousel { position: relative; margin: 8px 0 36px; }
+  .carousel { position: relative; margin: 8px 0 40px; }
+  .carousel .track { box-shadow: 0 18px 40px -22px rgba(80, 60, 40, .45); }
   .track {
     display: flex;
     overflow-x: auto;
@@ -119,11 +132,15 @@
   .card {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 26px 28px;
+    box-shadow: 0 10px 30px -24px rgba(80, 60, 40, .5);
   }
-  dl { display: grid; grid-template-columns: 110px 1fr; row-gap: 14px; }
-  dt { color: var(--sub); font-size: 14px; font-weight: 600; padding-top: 1px; }
+  dl { display: grid; grid-template-columns: 110px 1fr; }
+  dt, dd { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  dt:first-of-type, dd:first-of-type { padding-top: 0; }
+  dt:last-of-type, dd:last-of-type { padding-bottom: 0; border-bottom: none; }
+  dt { color: var(--sub); font-size: 14px; font-weight: 600; padding-top: 12px; }
   dd { font-size: 16px; font-weight: 500; }
   dd small { color: var(--sub); font-weight: 400; }
 
@@ -147,6 +164,13 @@
   .insta:hover { border-color: var(--accent); transform: translateY(-1px); }
   .insta svg { width: 20px; height: 20px; }
   .thanks { margin-top: 18px; color: var(--sub); font-size: 14px; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.9,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .slide img { transition: none; }
+  }
 
   @media (max-width: 480px) {
     header { padding: 48px 0 32px; }
@@ -248,6 +272,15 @@
   }, { passive: true });
 
   render();
+
+  const toReveal = document.querySelectorAll('section, footer');
+  toReveal.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  toReveal.forEach(el => io.observe(el));
 </script>
 </body>
 </html>
